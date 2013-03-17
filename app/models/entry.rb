@@ -1,10 +1,13 @@
 class Entry < ActiveRecord::Base
+  scope_accessible :user
+  scope_accessible :action
+
   # Public: Filter results by the given user_id
   #
   # user_id - ID of the user to search for
   #
   # Returns a Relation
-  def self.by_user(user_id)
+  def self.user(user_id)
     where(user_id: user_id)
   end
 
@@ -13,7 +16,7 @@ class Entry < ActiveRecord::Base
   # action_type - Key identifying the action to search for
   #
   # Returns a Relation
-  def self.by_action(action_type)
+  def self.action(action_type)
     where(action_type: action_type)
   end
 end
