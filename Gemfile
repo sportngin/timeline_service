@@ -18,6 +18,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'periscope-activerecord'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -27,6 +28,7 @@ gem 'jbuilder', '~> 1.0.1'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
