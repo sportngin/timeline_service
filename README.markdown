@@ -4,6 +4,8 @@ Timeline Service
 Capture and display user behavior in your application. Use this information for
 dashboards, business intelligence, or debugging.
 
+[![Code Climate](https://codeclimate.com/github/sportngin/timeline_service.png)](https://codeclimate.com/github/sportngin/timeline_service)
+
 Requirements
 ------------
 
