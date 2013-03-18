@@ -2,7 +2,46 @@ require "spec_helper"
 
 describe Entry do
   context "#valid?" do
-    pending
+    let(:entry) { FactoryGirl.build(:entry) }
+
+    it "is true for the default factory" do
+      expect(entry).to be_valid
+    end
+
+    it "is false if the user_id is missing" do
+      entry.user_id = nil
+      expect(entry).to_not be_valid
+    end
+
+    it "is false if the action_type is missing" do
+      entry.action_type = nil
+      expect(entry).to_not be_valid
+    end
+
+    it "is false if the happened_at is missing" do
+      entry.happened_at = nil
+      expect(entry).to_not be_valid
+    end
+
+    it "is false if metadata is missing" do
+      entry.metadata = nil
+      expect(entry).to_not be_valid
+    end
+  end
+
+  context ".new" do
+    let(:time) { 1.month.ago }
+    let(:metadata) { {foo: "bar"} }
+
+    it "sets a default happened_at if not otherwise set" do
+      expect(Entry.new(happened_at: time).happened_at).to eq(time)
+      expect(Entry.new.happened_at).to be > 1.minute.ago # close enough of a test
+    end
+
+    it "sets an empty metadata hash if not otherwise set" do
+      expect(Entry.new(metadata: metadata).metadata).to eq(metadata)
+      expect(Entry.new.metadata).to eq({})
+    end
   end
 
   context ".periscope(criteria)" do
