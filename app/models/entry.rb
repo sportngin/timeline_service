@@ -4,6 +4,8 @@ class Entry < ActiveRecord::Base
   # an empty metadata hash is fine, just not nil
   validate :metadata_cannot_be_nil
 
+  after_initialize :populate_default_values
+
   scope_accessible :user
   scope_accessible :action
   scope_accessible :before
@@ -45,6 +47,7 @@ class Entry < ActiveRecord::Base
     where("happened_at >= ?", timeish)
   end
 
+  # Private: Validate that metadata isn't nil
   def metadata_cannot_be_nil
     if metadata.nil?
       errors.add(:metadata, "cannot be nil")
@@ -52,4 +55,10 @@ class Entry < ActiveRecord::Base
   end
   private :metadata_cannot_be_nil
 
+  # Private: Populate default values for unsupplied attributes
+  def populate_default_values
+    self.happened_at ||= Time.now
+    self.metadata ||= {}
+  end
+  private :populate_default_values
 end

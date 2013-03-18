@@ -29,6 +29,21 @@ describe Entry do
     end
   end
 
+  context ".new" do
+    let(:time) { 1.month.ago }
+    let(:metadata) { {foo: "bar"} }
+
+    it "sets a default happened_at if not otherwise set" do
+      expect(Entry.new(happened_at: time).happened_at).to eq(time)
+      expect(Entry.new.happened_at).to be > 1.minute.ago # close enough of a test
+    end
+
+    it "sets an empty metadata hash if not otherwise set" do
+      expect(Entry.new(metadata: metadata).metadata).to eq(metadata)
+      expect(Entry.new.metadata).to eq({})
+    end
+  end
+
   context ".periscope(criteria)" do
     it "can filter by user_id" do
       user1 = FactoryGirl.create(:entry, user_id: 1)
