@@ -1,4 +1,7 @@
 class Entry < ActiveRecord::Base
+  validates :user_id, :action_type, :happened_at,
+    presence: true
+
   scope_accessible :user
   scope_accessible :action
   scope_accessible :before

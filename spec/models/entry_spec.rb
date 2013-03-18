@@ -2,7 +2,26 @@ require "spec_helper"
 
 describe Entry do
   context "#valid?" do
-    pending
+    let(:entry) { FactoryGirl.build(:entry) }
+
+    it "is true for the default factory" do
+      expect(entry).to be_valid
+    end
+
+    it "is false if the user_id is missing" do
+      entry.user_id = nil
+      expect(entry).to_not be_valid
+    end
+
+    it "is false if the action_type is missing" do
+      entry.action_type = nil
+      expect(entry).to_not be_valid
+    end
+
+    it "is false if the happened_at is missing" do
+      entry.happened_at = nil
+      expect(entry).to_not be_valid
+    end
   end
 
   context ".periscope(criteria)" do
