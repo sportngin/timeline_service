@@ -21,5 +21,6 @@ FactoryGirl.define do
     user_id
     action_type
     happened_at
+    metadata { Hash.new }
   end
 end

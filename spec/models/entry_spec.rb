@@ -22,6 +22,11 @@ describe Entry do
       entry.happened_at = nil
       expect(entry).to_not be_valid
     end
+
+    it "is false if metadata is missing" do
+      entry.metadata = nil
+      expect(entry).to_not be_valid
+    end
   end
 
   context ".periscope(criteria)" do
